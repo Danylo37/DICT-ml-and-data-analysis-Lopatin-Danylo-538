@@ -1,6 +1,7 @@
 from sklearn.datasets import load_digits
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 from sklearn.model_selection import cross_validate, train_test_split
 from sklearn.pipeline import make_pipeline
@@ -11,7 +12,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import make_scorer, precision_score, recall_score, f1_score, confusion_matrix, ConfusionMatrixDisplay
 
 
-def class_distribution(digits):
+def class_distribution(digits, output_dir='results'):
     classes, counts = np.unique(digits.target, return_counts=True)
 
     plt.figure(figsize=(6, 4))
@@ -24,7 +25,9 @@ def class_distribution(digits):
     for i, count in enumerate(counts):
         plt.text(i, count + 1, str(count), ha='center', fontsize=12)
 
-    plt.show()
+    os.makedirs(output_dir, exist_ok=True)
+    plt.savefig(f'{output_dir}/class_distribution.png', bbox_inches='tight', dpi=100)
+    plt.close()
 
 
 def main():
@@ -34,8 +37,11 @@ def main():
     print(f"Targets:\n{digits.target}\n")
     print(f"Features:\n{digits.feature_names[:10]}...\n")
 
+    output_dir = os.path.join("practice_2", "results")
+    os.makedirs(output_dir, exist_ok=True)
+
     # Classification
-    class_distribution(digits)
+    class_distribution(digits, output_dir)
 
     X, y = digits.data, digits.target
 
@@ -71,9 +77,13 @@ def main():
         y_pred = model.predict(X_test)
 
         cm = confusion_matrix(y_test, y_pred)
-        ConfusionMatrixDisplay(cm).plot(cmap="Blues")
+        disp = ConfusionMatrixDisplay(cm)
+        disp.plot(cmap="Blues")
         plt.title(name)
-        plt.show()
+
+        filename = name.lower().replace(' ', '_')
+        plt.savefig(f'{output_dir}/confusion_matrix_{filename}.png', bbox_inches='tight', dpi=100)
+        plt.close()
 
 
 if __name__ == '__main__':
