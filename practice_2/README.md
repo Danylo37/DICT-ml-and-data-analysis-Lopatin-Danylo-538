@@ -1,5 +1,9 @@
 # Результати
 
+## Зразки зображень датасету Digits
+
+![Sample Images](results/sample_images.png)
+
 ## Збалансованість класів
 
 ![Class Distribution](results/class_distribution.png)

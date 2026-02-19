@@ -12,7 +12,25 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import make_scorer, precision_score, recall_score, f1_score, confusion_matrix, ConfusionMatrixDisplay
 
 
-def class_distribution(digits, output_dir='results'):
+def visualize_sample_images(digits, output_dir, n_samples=10):
+    fig, axes = plt.subplots(2, 5, figsize=(12, 6))
+    axes = axes.ravel()
+
+    for i in range(n_samples):
+        axes[i].imshow(digits.images[i], cmap='gray')
+        axes[i].set_title(f'Label: {digits.target[i]}')
+        axes[i].axis('off')
+
+    plt.suptitle('Sample Images from Digits Dataset', fontsize=16, y=1.02)
+    plt.tight_layout()
+
+    os.makedirs(output_dir, exist_ok=True)
+    plt.savefig(f'{output_dir}/sample_images.png', bbox_inches='tight', dpi=100)
+    plt.show()
+    plt.close()
+
+
+def class_distribution(digits, output_dir):
     classes, counts = np.unique(digits.target, return_counts=True)
 
     plt.figure(figsize=(6, 4))
@@ -27,6 +45,7 @@ def class_distribution(digits, output_dir='results'):
 
     os.makedirs(output_dir, exist_ok=True)
     plt.savefig(f'{output_dir}/class_distribution.png', bbox_inches='tight', dpi=100)
+    plt.show()
     plt.close()
 
 
@@ -39,6 +58,8 @@ def main():
 
     output_dir = os.path.join("practice_2", "results")
     os.makedirs(output_dir, exist_ok=True)
+
+    visualize_sample_images(digits, output_dir)
 
     # Classification
     class_distribution(digits, output_dir)
@@ -83,6 +104,7 @@ def main():
 
         filename = name.lower().replace(' ', '_')
         plt.savefig(f'{output_dir}/confusion_matrix_{filename}.png', bbox_inches='tight', dpi=100)
+        plt.show()
         plt.close()
 
 
