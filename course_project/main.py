@@ -11,12 +11,55 @@ RESULTS_DIR = "results"
 TARGET = "price"
 
 
+def plot_predicted_vs_actual(y_test, y_pred, name):
+    plt.figure(figsize=(6, 6))
+    plt.scatter(y_test, y_pred, label="Predictions")
+    plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r', label="Perfect Prediction")
+    plt.xlabel("Actual")
+    plt.ylabel("Predicted")
+    plt.title(f"{name}: Predicted vs Actual")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(os.path.join(RESULTS_DIR, f"{name}_predicted_vs_actual.png"))
+    plt.show()
+
+
+def plot_model_comparison(comparison):
+    plt.figure(figsize=(8, 5))
+    sns.barplot(data=comparison, x="Model", y="R²")
+    plt.title("Model Comparison (R²)")
+    plt.tight_layout()
+    plt.savefig(os.path.join(RESULTS_DIR, "model_comparison_r2.png"))
+    plt.show()
+
+    plt.figure(figsize=(8, 5))
+    sns.barplot(data=comparison, x="Model", y="MAPE")
+    plt.title("Model Comparison (MAPE)")
+    plt.tight_layout()
+    plt.savefig(os.path.join(RESULTS_DIR, "model_comparison_mape.png"))
+    plt.show()
+
+
+def train_and_evaluate_model(model, X_train, X_test, y_train, y_test, model_name):
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    mape = mean_absolute_percentage_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+
+    print(f"\n{model_name}:\n\tMAPE: {mape * 100:.2f}%\n\tR²: {r2 * 100:.2f}%")
+
+    plot_predicted_vs_actual(y_test, y_pred, model_name)
+
+    return mape, r2, y_pred
+
+
 def main():
     os.makedirs(RESULTS_DIR, exist_ok=True)
 
     # LOAD DATA
 
-    df = pd.read_csv("data.csv")
+    df: pd.DataFrame = pd.read_csv("data.csv")  # type: ignore
 
     # ANALYZE DATE
 
@@ -24,13 +67,13 @@ def main():
     print(df.head())
 
     print("\nData info:")
-    print(df.info())
+    df.info()
 
-    null_colls = df.isnull().sum()[df.isnull().sum() > 0]
+    null_cols = df.isnull().sum()[df.isnull().sum() > 0]
 
     print("\nColumns with nulls:")
-    print(null_colls.sort_values(ascending=False))
-    print(f"Total: {null_colls.count()}")
+    print(null_cols.sort_values(ascending=False))
+    print(f"Total: {null_cols.count()}")
 
     # REMOVE REDUNDANT COLUMNS
 
@@ -42,7 +85,7 @@ def main():
     df = pd.get_dummies(df, columns=cat_cols.tolist())
 
     print("\nData info after preprocessing:")
-    print(df.info())
+    df.info()
 
     # SPLIT DATA
 
@@ -74,41 +117,22 @@ def main():
     plt.savefig(os.path.join(RESULTS_DIR, "correlation_matrix.png"))
     plt.show()
 
-    # TRAIN AND EVALUATE LINEAR REGRESSION
+    # TRAIN AND EVALUATE MODELS
 
     lr = LinearRegression()
-    lr.fit(X_train, y_train)
-
-    y_pred_lr = lr.predict(X_test)
-    mape_lr = mean_absolute_percentage_error(y_test, y_pred_lr)
-    r2_lr = r2_score(y_test, y_pred_lr)
-
-    print(
-        f"\nLinear Regression:\n\tMAPE: {mape_lr * 100:.2f}%\n\tR²: {r2_lr * 100:.2f}%"
+    mape_lr, r2_lr, y_pred_lr = train_and_evaluate_model(
+        lr, X_train, X_test, y_train, y_test, "Linear"
     )
 
-    # TRAIN AND EVALUATE LASSO REGRESSION
-
     lasso = Lasso(alpha=1, random_state=42, max_iter=10000)
-    lasso.fit(X_train, y_train)
-    y_pred_lasso = lasso.predict(X_test)
-
-    mape_lasso = mean_absolute_percentage_error(y_test, y_pred_lasso)
-    r2_lasso = r2_score(y_test, y_pred_lasso)
-
-    print(f"\nLasso:\n\tMAPE: {mape_lasso * 100:.2f}%\n\tR²: {r2_lasso * 100:.2f}%")
-
-    # TRAIN AND EVALUATE RIDGE REGRESSION
+    mape_lasso, r2_lasso, y_pred_lasso = train_and_evaluate_model(
+        lasso, X_train, X_test, y_train, y_test, "Lasso"
+    )
 
     ridge = Ridge(alpha=1, random_state=42)
-
-    ridge.fit(X_train, y_train)
-    y_pred_ridge = ridge.predict(X_test)
-
-    mape_ridge = mean_absolute_percentage_error(y_test, y_pred_ridge)
-    r2_ridge = r2_score(y_test, y_pred_ridge)
-
-    print(f"\nRidge:\n\tMAPE: {mape_ridge * 100:.2f}%\n\tR²: {r2_ridge * 100:.2f}%\n")
+    mape_ridge, r2_ridge, y_pred_ridge = train_and_evaluate_model(
+        ridge, X_train, X_test, y_train, y_test, "Ridge"
+    )
 
     # COMPARE MODELS
 
@@ -120,6 +144,10 @@ def main():
         }
     )
     print(comparison)
+
+    # PLOT MODEL COMPARISON
+
+    plot_model_comparison(comparison)
 
 
 if __name__ == "__main__":
