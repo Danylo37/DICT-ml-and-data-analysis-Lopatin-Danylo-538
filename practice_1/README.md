@@ -1,10 +1,10 @@
-# Результати
+# Results
 
-## Збалансованість класів
+## Class Balance
 
 ![Species Distribution](results/species_distribution.png)
 
-## Візуалізація
+## Visualization
 
 ### Sepal Length vs Sepal Width
 

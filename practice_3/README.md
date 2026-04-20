@@ -1,22 +1,22 @@
 # Task 1
 
-## Середньоквадратична помилка (MSE) VS Кількість зразків (n_samples)
+## Mean Squared Error (MSE) VS Number of Samples (n_samples)
 
 ![MSE VS n_samples](results/task_1_mse_vs_n_samples.png)
 
-## R2 VS Кількість зразків (n_samples)
+## R2 VS Number of Samples (n_samples)
 
 ![R2 VS n_samples](results/task_1_r2_vs_n_samples.png)
 
-## Середньоквадратична помилка (MSE) VS Кількість ознак (n_features)
+## Mean Squared Error (MSE) VS Number of Features (n_features)
 
 ![MSE VS n_features](results/task_1_mse_vs_n_features.png)
 
-## R2 VS Кількість ознак (n_features)
+## R2 VS Number of Features (n_features)
 
 ![R2 VS n_features](results/task_1_r2_vs_n_features.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 
 ```
 Comparison of different n_samples (with n_features=3):
@@ -36,23 +36,23 @@ n_features=20: MSE=2805.01, R2=0.5961
 
 # Task 2
 
-## Оригінальні кластери (Original Clusters) з cluster_std=37
+## Original Clusters (with cluster_std=37)
 
 ![Original Cluster](results/task_2_original_clusters_cluster_std_37.png)
 
-## KMeans Predictions з cluster_std=37
+## KMeans Predictions (with cluster_std=37)
 
 ![KMeans Predictions](results/task_2_kmeans_predictions_cluster_std_37.png)
 
-## Силуетний коефіцієнт (Silhouette Score) VS cluster_std
+## Silhouette Score VS cluster_std
 
 ![Silhouette Score VS cluster_std](results/task_2_silhouette_score_vs_cluster_std.png)
 
-## Силуетний коефіцієнт (Silhouette Score) VS Кількість центрів (centers)
+## Silhouette Score VS Number of Centers
 
 ![Silhouette Score VS centers](results/task_2_silhouette_score_vs_centers.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 
 ```
 Testing single cluster_std value:
@@ -104,7 +104,7 @@ centers=20, silhouette_score=0.40
 
 # Task 3
 
-## Оригінальні кластери (Original Clusters)
+## Original Clusters
 
 ![Original Clusters](results/task_3_original_clusters.png)
 
@@ -112,7 +112,7 @@ centers=20, silhouette_score=0.40
 
 ![KMeans Predictions](results/task_3_kmeans_predictions.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 
 ```
 Silhouette Score: 0.91

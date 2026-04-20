@@ -7,7 +7,7 @@
 ![Class 0 = 1000, Class 1 = 500](results/task_1_SVC_1000_vs_500.png)
 ![Class 0 = 1000, Class 1 = 1000](results/task_1_SVC_1000_vs_1000.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 ```
 Experiment: class 0 = 1000, class 1 = 10
 Classification Report (No weights):
@@ -151,7 +151,7 @@ weighted avg       0.94      0.94      0.94       600
 
 ![Iris 50 vs 15](results/task_2_LogReg_Iris_50_vs_15.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 ```
 Classification Report (No weights):
               precision    recall  f1-score   support
@@ -183,7 +183,7 @@ weighted avg       1.00      1.00      1.00        20
 ![Predicted Digits](results/task_3_digits_predicted.png)
 ![Confusion Matrix](results/task_3_digits_confusion_matrix.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 ```
 Classification report for classifier SVC(gamma=0.001):
               precision    recall  f1-score   support

@@ -9,7 +9,7 @@
 
 ![Sklearn PLS Prediction](results/pls_prediction_comparison_sklearn.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 
 ```
 My PLS MSE: 0.3878403902053833

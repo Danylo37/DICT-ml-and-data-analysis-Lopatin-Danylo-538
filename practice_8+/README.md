@@ -35,7 +35,7 @@
 ![Predictions (n_components=300)](results/predictions_n_components_300.png)
 ![Confusion Matrix (n_components=300)](results/confusion_matrix_n_components_300.png)
 
-# Результати з консольного виводу
+# Results from Console Output
 ```
 Total dataset size:
 n_samples: 1288

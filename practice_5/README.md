@@ -2,7 +2,7 @@
 
 ![t-SNE Embeddings](results/t-SNE_embeddings.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 
 ```
 Before reshaping:

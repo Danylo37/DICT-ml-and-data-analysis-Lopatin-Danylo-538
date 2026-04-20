@@ -8,7 +8,7 @@
 ## Custom Logistic Regression prediction on custom image
 ![Custom Image Prediction](results/task_1_prediction.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 ```
 Custom model train accuracy: 99.04%
 Custom model test accuracy: 70.00%
@@ -26,7 +26,7 @@ y = 0.4462628618863666, your algorithm predicts a "non-cat" picture.
 ![Learning Rate Comparison](results/task_2_learning_rate_comparison.png)
 ![Iterations vs Accuracy](results/task_2_iterations_vs_accuracy.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 ```
 lr=0.01 train=99.52% test=70.00%
 lr=0.005 train=99.04% test=70.00%

@@ -1,14 +1,14 @@
-# Результати
+# Results
 
-## Зразки зображень датасету Digits
+## Sample Images from Digits Dataset
 
 ![Sample Images](results/sample_images.png)
 
-## Збалансованість класів
+## Class Balance
 
 ![Class Distribution](results/class_distribution.png)
 
-## Матриці плутанини
+## Confusion Matrices
 
 ### Dummy Classifier
 

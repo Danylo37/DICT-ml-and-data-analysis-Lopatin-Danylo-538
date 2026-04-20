@@ -8,7 +8,7 @@
 ![Polynomial Degree 4](results/task_1_poly_degree_4.png)
 ![Polynomial Degree 5](results/task_1_poly_degree_5.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 ```
 Degree: 2
 	Accuracy:  0.9810
@@ -67,7 +67,7 @@ Degree: 5
 ![Polynomial (Noise 0.3)](results/task_2_polynomial_noise_0.3.png)
 ![Sigmoid (Noise 0.3)](results/task_2_sigmoid_noise_0.3.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 ```
 Noise Level: 0.0:
 	Linear:
@@ -180,7 +180,7 @@ Noise Level: 0.3:
 ![Polynomial Kernel](results/task_3_polynomial.png)
 ![Sigmoid Kernel](results/task_3_sigmoid.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 ```
 Linear:
 	accuracy: 0.8699999999999999

@@ -7,7 +7,7 @@
 ![Noise vs Degree 5](results/task_1_noise_vs_degree_5.png)
 ![Noise vs Degree 9](results/task_1_noise_vs_degree_9.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 
 ```
 Results:
@@ -36,7 +36,7 @@ Results:
 
 ![Number of Components VS Explained Variance](results/task_2_n_components_explained_variance.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 
 ```
 Dataset shape: (1797, 64)
@@ -56,7 +56,7 @@ Components needed for >= 99% explained variance: 54
 
 ![Reconstruction Comparison](results/task_3_reconstruction_comparison_pca.png)
 
-## Результати з консольного виводу
+## Results from Console Output
 
 ```
 My PCA MSE: 776.87115
