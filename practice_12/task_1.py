@@ -1,34 +1,42 @@
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeRegressor
 from IPython.display import Image
 from sklearn import datasets
 from sklearn import tree
+import numpy as np
 import pydotplus
 import os
 
 RESULTS_DIR = "results"
-
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-iris = datasets.load_iris()
-features = iris.data
-target = iris.target
+housing = datasets.fetch_california_housing()
+features = housing.data
+target = housing.target
 
-decisiontree = DecisionTreeClassifier(criterion="entropy", random_state=42)
-model = decisiontree.fit(features, target)
+X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.2, random_state=42)
 
-observation = [[5, 4, 3, 2], [1, 1, 2, 3]]
+decisiontree = DecisionTreeRegressor(random_state=42, max_depth=5, min_samples_split=10)
+model = decisiontree.fit(X_train, y_train)
 
-print("Predictions:")
-print(model.predict(observation))
+predictions = model.predict(X_test)
 
-print("Prediction probabilities:")
-print(model.predict_proba(observation))
+mse = mean_squared_error(y_test, predictions)
+rmse = np.sqrt(mse)
+mape = mean_absolute_percentage_error(y_test, predictions) * 100
+
+print(f"MSE: {mse:.4f}")
+print(f"RMSE: {rmse:.4f}")
+print(f"MAPE: {mape:.2f}%")
 
 dot_data = tree.export_graphviz(
     decisiontree,
     out_file=None,
-    feature_names=iris.feature_names,
-    class_names=iris.target_names,
+    feature_names=housing.feature_names,
+    filled=True,
+    rounded=True,
+    max_depth=3
 )
 
 graph = pydotplus.graph_from_dot_data(dot_data)

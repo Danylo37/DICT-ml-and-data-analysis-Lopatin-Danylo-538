@@ -1,4 +1,4 @@
-# Task 1: Decision Tree Classification on Iris Dataset
+# Task 1: Decision Tree Regression on California Housing Dataset
 
 ## Decision Tree Visualization
 
@@ -8,15 +8,11 @@
 ## Results from Console Output
 
 ```
-Predictions:
-[1 0]
-
-Prediction probabilities:
-[[0. 1. 0.]
- [1. 0. 0.]]
+MSE: 0.5245146178314735
+MAPE: 32.6710%
 ```
 
-# Task 2: Random Forest Classification with Feature Importance
+# Task 2: Random Forest Regression with Feature Importance
 
 ## Feature Importance Analysis
 
@@ -27,18 +23,23 @@ Prediction probabilities:
 
 ```
 Predictions (all features):
-[1 0]
+[0.55925081 0.82179197]
 
-Prediction probabilities (all features):
-[[0.02439024 0.54471545 0.43089431]
- [0.49593496 0.21138211 0.29268293]]
+All features
+MSE: 0.2966
+RMSE: 0.5447
+MAPE: 21.57%
+
+Selected features:
+['MedInc' 'AveOccup']
 
 Predictions (selected features only):
-[2 1]
+[0.99317984 1.30686351]
 
-Prediction probabilities (selected features only):
-[[0.         0.01626016 0.98373984]
- [0.49593496 0.50406504 0.        ]]
+Selected features
+MSE: 0.5646
+RMSE: 0.7514
+MAPE: 34.69%
 ```
 
 # Task 3: Decision Tree with Different Max Depth Values
