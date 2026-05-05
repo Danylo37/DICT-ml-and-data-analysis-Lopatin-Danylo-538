@@ -113,6 +113,7 @@ def main():
     plt.figure(figsize=(10, 8))
     sns.heatmap(df[top_features].corr(), annot=True, cmap="coolwarm")
     plt.title("Correlation Matrix")
+    plt.xticks(rotation=45)
     plt.tight_layout()
     plt.savefig(os.path.join(RESULTS_DIR, "correlation_matrix.png"))
     plt.show()
