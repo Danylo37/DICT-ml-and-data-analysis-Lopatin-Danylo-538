@@ -2,3 +2,4 @@
 pycache
 *.pyc
 pyrightconfig.json
+cmake-build-debug/
